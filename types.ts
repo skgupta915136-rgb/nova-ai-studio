@@ -8,15 +8,13 @@ export type GroundingChunk = {
 };
 
 export type ConversationTurn = {
-  speaker: 'user' | 'nova';
+  speaker: 'user' | 'zeno';
   text: string;
   isFinal?: boolean; // For live transcription
   groundingChunks?: GroundingChunk[];
 };
 
 export interface ChatSettings {
-  useSearch: boolean;
-  useMaps: boolean;
   usePro: boolean; // Deep Thought
   useLite: boolean; // Flash Lite
   useTts: boolean; // Speak

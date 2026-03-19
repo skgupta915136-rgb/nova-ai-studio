@@ -6,7 +6,7 @@ interface ConversationViewProps {
   history: ConversationTurn[];
 }
 
-const NovaIcon = () => (
+const ZenoIcon = () => (
   <div className="w-8 h-8 rounded-full bg-purple-500 flex-shrink-0 flex items-center justify-center shadow-md">
     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM5 9a1 1 0 000 2h2a1 1 0 100-2H5zm10-1a1 1 0 10-2 0v2a1 1 0 102 0V8zM8 5a1 1 0 100 2h2a1 1 0 100-2H8z" clipRule="evenodd" />
@@ -34,7 +34,7 @@ const ConversationView: React.FC<ConversationViewProps> = ({ history }) => {
     <div className="flex-1 w-full max-w-3xl p-4 overflow-y-auto space-y-6 bg-black/30 backdrop-blur-sm rounded-xl">
       {history.map((turn, index) => (
         <div key={index} className={`flex items-start gap-3 ${turn.speaker === 'user' ? 'justify-end' : 'justify-start'}`}>
-          {turn.speaker === 'nova' && <NovaIcon />}
+          {turn.speaker === 'zeno' && <ZenoIcon />}
           <div className="flex flex-col">
             <div 
               className={`px-4 py-3 rounded-2xl max-w-md md:max-w-lg shadow-lg break-words ${

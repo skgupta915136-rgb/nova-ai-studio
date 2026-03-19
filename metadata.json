@@ -1,5 +1,5 @@
 {
-  "name": "NOVA AI Studio",
+  "name": "Zeno AI Studio",
   "description": "Engage in real-time voice conversations and use powerful generative AI tools for images and video, all powered by the Gemini API family.",
   "requestFramePermissions": [
     "microphone",

@@ -13,7 +13,7 @@ const StatusIndicator: React.FC<StatusIndicatorProps> = ({ isListening, isSpeaki
       return {
         ring: 'ring-purple-500',
         glow: 'shadow-[0_0_20px_5px] shadow-purple-500/50',
-        text: 'NOVA is speaking... (Click to Stop)',
+        text: 'Zeno is speaking... (Click to Stop)',
         textColor: 'text-purple-300',
       };
     }
@@ -28,7 +28,7 @@ const StatusIndicator: React.FC<StatusIndicatorProps> = ({ isListening, isSpeaki
     return {
       ring: 'ring-sky-500',
       glow: 'shadow-[0_0_20px_5px] shadow-sky-500/50',
-      text: 'NOVA is waiting',
+      text: 'Zeno is waiting',
       textColor: 'text-sky-300',
     };
   };
@@ -115,7 +115,7 @@ const StatusIndicator: React.FC<StatusIndicatorProps> = ({ isListening, isSpeaki
           <div className={`absolute inset-0 rounded-full ${ring} ring-2 animate-ping opacity-75`}></div>
           <div className={`absolute inset-1 rounded-full ${ring} ring-1`}></div>
           <div className={`w-24 h-24 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-2xl font-bold transition-all duration-500 ${textColor} ${glow}`}>
-            NOVA
+            Zeno
           </div>
         </div>
       </div>

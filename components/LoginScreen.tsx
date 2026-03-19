@@ -43,7 +43,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
     setTimeout(() => {
       const mockUser: User = {
         id: '101',
-        name: 'Nova User',
+        name: 'Zeno User',
         email: 'user@gmail.com',
         avatar: 'https://lh3.googleusercontent.com/a/default-user=s96-c',
       };
@@ -59,7 +59,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
         const guestUser: User = {
             id: `guest-${Date.now()}`,
             name: name,
-            email: `${name.replace(/\s+/g, '.').toLowerCase()}@guest.nova.ai`,
+            email: `${name.replace(/\s+/g, '.').toLowerCase()}@guest.zeno.ai`,
             avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=6366f1&color=fff`,
         };
         onLogin(guestUser);
@@ -82,7 +82,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
                   <span className="text-3xl font-bold text-white">N</span>
                </div>
             </div>
-            <h1 className="text-3xl font-bold text-white mb-2">Welcome to NOVA</h1>
+            <h1 className="text-3xl font-bold text-white mb-2">Welcome to Zeno</h1>
             <p className="text-slate-400 text-center">
               Your personal AI studio for voice, video, and imagination.
             </p>

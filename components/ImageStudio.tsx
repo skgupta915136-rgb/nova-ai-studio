@@ -239,7 +239,7 @@ const ImageStudio: React.FC<ImageStudioProps> = ({ isOpen, onClose }) => {
                 ) : (
                     <div className="relative group">
                          <img src={result} alt="Generated result" className="w-full rounded-lg shadow-xl" />
-                         <a href={result} download={`nova-generated-${Date.now()}.png`} className="absolute bottom-2 right-2 bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/90" title="Download">
+                         <a href={result} download={`zeno-generated-${Date.now()}.png`} className="absolute bottom-2 right-2 bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/90" title="Download">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                             </svg>

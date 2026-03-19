@@ -92,18 +92,6 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
             </div>
         </div>
 
-        {/* Grounding Tools */}
-        <div>
-            <h4 className="text-lg font-medium text-white mb-3">Grounding Tools</h4>
-            <div className="space-y-3 bg-slate-800/50 p-4 rounded-lg border border-slate-700/50">
-                 <Toggle label="Google Search" checked={chatSettings.useSearch} onChange={handleToggle('useSearch')} />
-                 <Toggle label="Google Maps" checked={chatSettings.useMaps} onChange={handleToggle('useMaps')} />
-                 <p className="text-xs text-slate-500 mt-2">
-                    Enabling grounding tools will use the standard Flash model.
-                 </p>
-            </div>
-        </div>
-
         {/* Audio Output */}
         <div>
              <h4 className="text-lg font-medium text-white mb-3">Audio & Voice</h4>
@@ -146,7 +134,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
         
         <div className="pt-2 text-center">
             <p className="text-xs text-slate-600">
-                NOVA AI Studio v1.0
+                Zeno AI Studio v1.0
             </p>
         </div>
       </div>

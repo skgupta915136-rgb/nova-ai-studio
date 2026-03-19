@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 const NotesApp: React.FC = () => {
   const [notes, setNotes] = useState(() => {
-    return localStorage.getItem('nova-notes-app') || 'Type your notes here...';
+    return localStorage.getItem('zeno-notes-app') || 'Type your notes here...';
   });
 
   useEffect(() => {
     const timer = setTimeout(() => {
-        localStorage.setItem('nova-notes-app', notes);
+        localStorage.setItem('zeno-notes-app', notes);
     }, 500); // Debounce saving to avoid excessive writes
     
     return () => clearTimeout(timer);

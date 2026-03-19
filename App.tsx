@@ -32,8 +32,6 @@ const API_KEY = process.env.GEMINI_API_KEY || '';
 const SettingsIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>;
 
 const DEFAULT_CHAT_SETTINGS: ChatSettings = {
-  useSearch: false,
-  useMaps: false,
   usePro: false,
   useLite: false,
   useTts: true,
@@ -44,7 +42,7 @@ const tools: Tool[] = [{
     functionDeclarations: [
         {
             name: "openApp",
-            description: "Opens an application or studio within the NOVA interface. Use this when the user asks to open tools like calculator, notes, or creative studios.",
+            description: "Opens an application or studio within the Zeno interface. Use this when the user asks to open tools like calculator, notes, or creative studios.",
             parameters: {
                 type: Type.OBJECT,
                 properties: {
@@ -118,10 +116,10 @@ const App: React.FC = () => {
     error: null,
     activeModal: null,
     userLocation: null,
-    voice: localStorage.getItem('nova_voice_preference') || 'Kore',
+    voice: localStorage.getItem('zeno_voice_preference') || 'Kore',
     chatSettings: (() => {
         try {
-            const saved = localStorage.getItem('nova_chat_settings');
+            const saved = localStorage.getItem('zeno_chat_settings');
             return saved ? { ...DEFAULT_CHAT_SETTINGS, ...JSON.parse(saved) } : DEFAULT_CHAT_SETTINGS;
         } catch (e) {
             return DEFAULT_CHAT_SETTINGS;
@@ -129,7 +127,7 @@ const App: React.FC = () => {
     })(),
     currentUser: (() => {
         try {
-            const saved = localStorage.getItem('nova_user');
+            const saved = localStorage.getItem('zeno_user');
             return saved ? JSON.parse(saved) : null;
         } catch (e) {
             return null;
@@ -167,7 +165,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     try {
-      localStorage.setItem('nova_voice_preference', appState.voice);
+      localStorage.setItem('zeno_voice_preference', appState.voice);
     } catch (e) {
       console.error("Failed to save voice preference", e);
     }
@@ -175,7 +173,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     try {
-      localStorage.setItem('nova_chat_settings', JSON.stringify(appState.chatSettings));
+      localStorage.setItem('zeno_chat_settings', JSON.stringify(appState.chatSettings));
     } catch (e) {
       console.error("Failed to save chat settings", e);
     }
@@ -255,7 +253,7 @@ const App: React.FC = () => {
         config: {
           tools: tools,
           responseModalities: [Modality.AUDIO],
-          systemInstruction: 'You are NOVA, the AI assistant inside NOVA AI Studio. You must ALWAYS identify yourself as NOVA, never as Gemini or a Google AI. You are a friendly and helpful conversational AI assistant. You can open apps like Calculator, Notes, Image Studio, Video Studio, and Speech Studio when asked. You can also open external websites like YouTube, Chrome, WhatsApp, Telegram, Instagram, and Folder.',
+          systemInstruction: 'You are Zeno, the AI assistant inside Zeno AI Studio. You must ALWAYS identify yourself as Zeno, never as Gemini or a Google AI. You are a friendly and helpful conversational AI assistant. You can open apps like Calculator, Notes, Image Studio, Video Studio, and Speech Studio when asked. You can also open external websites like YouTube, Chrome, WhatsApp, Telegram, Instagram, and Folder.',
           inputAudioTranscription: {},
           outputAudioTranscription: {},
         },
@@ -398,14 +396,17 @@ const App: React.FC = () => {
     if (message.serverContent?.inputTranscription || message.serverContent?.outputTranscription) {
         const isInput = !!message.serverContent?.inputTranscription;
         const transcription = isInput ? message.serverContent.inputTranscription! : message.serverContent.outputTranscription!;
-        const speaker = isInput ? 'user' : 'nova';
+        const speaker = isInput ? 'user' : 'zeno';
         
         setAppState(prev => {
             const newConversation = [...prev.conversation];
             const lastTurn = newConversation[newConversation.length - 1];
 
             if (lastTurn?.speaker === speaker && !lastTurn.isFinal) {
-                lastTurn.text += transcription.text;
+                newConversation[newConversation.length - 1] = {
+                    ...lastTurn,
+                    text: lastTurn.text + transcription.text
+                };
             } else {
                 newConversation.push({ speaker, text: transcription.text, isFinal: false });
             }
@@ -524,12 +525,12 @@ const App: React.FC = () => {
   }, []);
 
   const handleLogin = (user: User) => {
-    localStorage.setItem('nova_user', JSON.stringify(user));
+    localStorage.setItem('zeno_user', JSON.stringify(user));
     setAppState(prev => ({ ...prev, currentUser: user }));
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('nova_user');
+    localStorage.removeItem('zeno_user');
     setAppState(prev => ({ ...prev, currentUser: null, activeModal: null }));
   };
 
@@ -652,7 +653,7 @@ const App: React.FC = () => {
       <Modal 
         isOpen={appState.activeModal === 'chat-pro'} 
         onClose={() => setAppState(prev => ({ ...prev, activeModal: null }))}
-        title="NOVA Pro (Deep Reasoning)"
+        title="Zeno Pro (Deep Reasoning)"
         size="lg"
       >
         <ChatApp />
@@ -710,7 +711,7 @@ const App: React.FC = () => {
                     type="text"
                     value={textInput}
                     onChange={(e) => setTextInput(e.target.value)}
-                    placeholder="Type a message to NOVA..."
+                    placeholder="Type a message to Zeno..."
                     className="w-full bg-slate-900/80 backdrop-blur-md border border-slate-700/50 rounded-2xl py-4 pl-6 pr-14 text-white focus:ring-2 focus:ring-sky-500 focus:outline-none shadow-2xl transition-all"
                 />
                 <button 

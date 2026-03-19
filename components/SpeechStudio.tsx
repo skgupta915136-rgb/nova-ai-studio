@@ -132,7 +132,7 @@ const SpeechStudio: React.FC<SpeechStudioProps> = ({ isOpen, onClose, activeVoic
                 <textarea
                     value={text}
                     onChange={(e) => setText(e.target.value)}
-                    placeholder="Hello! I am NOVA, your AI assistant..."
+                    placeholder="Hello! I am Zeno, your AI assistant..."
                     className="w-full bg-slate-800 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-sky-500 focus:outline-none"
                     rows={4}
                 />

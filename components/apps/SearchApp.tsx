@@ -63,7 +63,7 @@ const SearchApp: React.FC = () => {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search the web with NOVA..."
+            placeholder="Search the web with Zeno..."
             className="w-full bg-slate-800 border border-slate-700 rounded-full py-3 pl-12 pr-4 text-white focus:ring-2 focus:ring-sky-500 focus:outline-none transition-all"
           />
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={20} />

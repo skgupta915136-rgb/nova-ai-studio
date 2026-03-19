@@ -32,7 +32,7 @@ const ChatApp: React.FC = () => {
 
   // Load conversations from localStorage
   useEffect(() => {
-    const saved = localStorage.getItem('nova_pro_chats');
+    const saved = localStorage.getItem('zeno_pro_chats');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
@@ -49,7 +49,7 @@ const ChatApp: React.FC = () => {
   // Save conversations to localStorage
   useEffect(() => {
     if (conversations.length > 0) {
-      localStorage.setItem('nova_pro_chats', JSON.stringify(conversations));
+      localStorage.setItem('zeno_pro_chats', JSON.stringify(conversations));
     }
   }, [conversations]);
 
@@ -143,7 +143,7 @@ const ChatApp: React.FC = () => {
         })),
         config: {
           thinkingConfig: isThinking ? { thinkingLevel: ThinkingLevel.HIGH } : undefined,
-          systemInstruction: "You are NOVA Pro, the most advanced version of the AI assistant inside NOVA AI Studio. You must ALWAYS identify yourself as NOVA Pro, never as Gemini or a Google AI. You have deep reasoning capabilities. When thinking mode is on, you will provide thorough, well-reasoned answers."
+          systemInstruction: "You are Zeno Pro, the most advanced version of the AI assistant inside Zeno AI Studio. You must ALWAYS identify yourself as Zeno Pro, never as Gemini or a Google AI. You have deep reasoning capabilities. When thinking mode is on, you will provide thorough, well-reasoned answers."
         }
       });
 
@@ -244,7 +244,7 @@ const ChatApp: React.FC = () => {
             </div>
             <div>
               <h2 className="font-bold text-white flex items-center gap-2">
-                NOVA Pro
+                Zeno Pro
                 <span className="bg-purple-500/20 text-purple-400 text-[10px] px-1.5 py-0.5 rounded border border-purple-500/30 uppercase tracking-wider font-black">Thinking Mode</span>
               </h2>
               <p className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Powered by Gemini 3.1 Pro</p>
@@ -271,7 +271,7 @@ const ChatApp: React.FC = () => {
               </div>
               <div>
                   <p className="text-slate-300 font-medium text-lg">Deep Reasoning Mode</p>
-                  <p className="text-sm text-slate-500 max-w-xs mx-auto">Ask complex questions, solve math problems, or get detailed analysis with NOVA Pro.</p>
+                  <p className="text-sm text-slate-500 max-w-xs mx-auto">Ask complex questions, solve math problems, or get detailed analysis with Zeno Pro.</p>
               </div>
             </div>
           ) : (
@@ -296,7 +296,7 @@ const ChatApp: React.FC = () => {
                 </div>
                 <div className="bg-slate-800/80 border border-slate-700 p-4 rounded-2xl shadow-xl flex items-center gap-3">
                   <Spinner />
-                  <span className="text-xs text-purple-400 font-bold animate-pulse uppercase tracking-widest">NOVA is thinking deeply...</span>
+                  <span className="text-xs text-purple-400 font-bold animate-pulse uppercase tracking-widest">Zeno is thinking deeply...</span>
                 </div>
               </div>
             </div>
@@ -311,7 +311,7 @@ const ChatApp: React.FC = () => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask NOVA Pro anything..."
+              placeholder="Ask Zeno Pro anything..."
               className="w-full bg-slate-800 border border-slate-700 rounded-2xl py-4 pl-4 pr-14 text-white focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all shadow-inner"
             />
             <button 
